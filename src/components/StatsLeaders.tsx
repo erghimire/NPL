@@ -56,8 +56,18 @@ export const StatsLeaders: React.FC = () => {
         {activeTab === 'orange' ? (
           <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/15 via-slate-900 to-amber-900/15 border border-amber-500/30 mb-4 flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20">
-                🧢
+              <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-lg shadow-amber-500/20 shrink-0 relative bg-slate-900">
+                {orangeLeader.photoUrl ? (
+                  <img
+                    src={orangeLeader.photoUrl}
+                    alt={orangeLeader.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                ) : null}
+                <span className="absolute bottom-1 right-1 text-xs drop-shadow">🧢</span>
               </div>
               <div>
                 <span className="text-[10px] uppercase font-black tracking-widest text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30 inline-block mb-1">
@@ -98,8 +108,18 @@ export const StatsLeaders: React.FC = () => {
         ) : (
           <div className="p-4 rounded-xl bg-gradient-to-r from-purple-500/15 via-slate-900 to-purple-900/15 border border-purple-500/30 mb-4 flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-purple-500/20 border-2 border-purple-400 flex items-center justify-center text-3xl shadow-lg shadow-purple-500/20">
-                🧢
+              <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-purple-400 shadow-lg shadow-purple-500/20 shrink-0 relative bg-slate-900">
+                {purpleLeader.photoUrl ? (
+                  <img
+                    src={purpleLeader.photoUrl}
+                    alt={purpleLeader.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                ) : null}
+                <span className="absolute bottom-1 right-1 text-xs drop-shadow">🧢</span>
               </div>
               <div>
                 <span className="text-[10px] uppercase font-black tracking-widest text-purple-300 bg-purple-500/20 px-2 py-0.5 rounded border border-purple-500/30 inline-block mb-1">
@@ -173,11 +193,29 @@ export const StatsLeaders: React.FC = () => {
                   <td className="py-2.5 px-3 text-center font-bold text-slate-400">
                     {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : idx + 1}
                   </td>
-                  <td className="py-2.5 px-3 font-bold text-white flex items-center gap-1.5">
-                    {player.name}
-                    {player.isCapHolder && (
-                      <span className="text-[10px]">🧢</span>
-                    )}
+                  <td className="py-2.5 px-3 font-bold text-white">
+                    <div className="flex items-center gap-2">
+                      {player.photoUrl ? (
+                        <img
+                          src={player.photoUrl}
+                          alt={player.name}
+                          className="w-6 h-6 rounded-full object-cover border border-slate-700 shrink-0 shadow-sm"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      ) : (
+                        <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-slate-300 font-bold border border-slate-700 shrink-0">
+                          {player.name.slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                      <span className="flex items-center gap-1">
+                        {player.name}
+                        {player.isCapHolder && (
+                          <span className="text-[10px]">🧢</span>
+                        )}
+                      </span>
+                    </div>
                   </td>
                   <td className="py-2.5 px-3 text-slate-300">
                     {player.teamName}

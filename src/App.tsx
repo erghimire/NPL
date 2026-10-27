@@ -8,6 +8,7 @@ import { StatsLeaders } from './components/StatsLeaders';
 import { FanZone } from './components/FanZone';
 import { ApkExportModal } from './components/ApkExportModal';
 import { NotificationSettingsModal } from './components/NotificationSettingsModal';
+import { LiveSourceBadge } from './components/LiveSourceBadge';
 import { BottomNav, TabType } from './components/BottomNav';
 import { useLiveMatchSimulation } from './hooks/useLiveMatchSimulation';
 import { usePWAInstall } from './hooks/usePWAInstall';
@@ -20,11 +21,12 @@ import {
   Sparkles, 
   RefreshCw, 
   WifiOff, 
-  ChevronRight,
-  Shield,
-  Activity,
-  BellRing,
-  Bell
+  ChevronRight, 
+  Shield, 
+  Activity, 
+  BellRing, 
+  Bell,
+  Globe
 } from 'lucide-react';
 
 export default function App() {
@@ -43,7 +45,12 @@ export default function App() {
     lastUpdatedTime,
     eventAlert,
     simulateNextBall,
-    resetMatch
+    resetMatch,
+    isWikiSynced,
+    isSyncingWiki,
+    wikiLastSync,
+    wikiSeasonInfo,
+    syncWithWikipedia
   } = useLiveMatchSimulation();
 
   const { isInstallable, isInstalled, install } = usePWAInstall();
@@ -83,6 +90,15 @@ export default function App() {
         onOpenApkModal={() => setIsApkModalOpen(true)}
         onOpenNotificationsModal={() => setIsNotificationsModalOpen(true)}
         lastUpdated={lastUpdatedTime}
+      />
+
+      {/* Wikipedia & Google Live Data Sync Bar */}
+      <LiveSourceBadge
+        isSynced={isWikiSynced}
+        isSyncing={isSyncingWiki}
+        lastSyncTime={wikiLastSync}
+        seasonInfo={wikiSeasonInfo}
+        onRefresh={syncWithWikipedia}
       />
 
       {/* Push Notification Call-to-Action Banner */}

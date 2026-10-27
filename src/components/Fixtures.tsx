@@ -24,11 +24,16 @@ export const Fixtures: React.FC<FixturesProps> = ({ matches, onSelectMatch }) =>
             <Calendar className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-sm sm:text-base font-extrabold text-white">
-              NPL FIXTURES & RESULTS
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm sm:text-base font-extrabold text-white">
+                NPL 2026 FIXTURES &amp; RESULTS
+              </h2>
+              <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                LIVE 2026 SEASON
+              </span>
+            </div>
             <p className="text-[11px] text-slate-400">
-              Tournament schedule at TU Cricket Ground, Kirtipur
+              Official schedule &amp; match results from <strong>Wikipedia &amp; ESPNcricinfo</strong>
             </p>
           </div>
         </div>
@@ -100,7 +105,22 @@ export const Fixtures: React.FC<FixturesProps> = ({ matches, onSelectMatch }) =>
                   {/* Team 1 */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-base">{match.team1.logoEmoji}</span>
+                      <div className="w-5 h-5 rounded flex items-center justify-center p-0.5 bg-slate-900 border border-white/10 shrink-0">
+                        {match.team1.logoUrl ? (
+                          <img
+                            src={match.team1.logoUrl}
+                            alt={match.team1.name}
+                            className="w-full h-full object-contain filter drop-shadow-sm"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              if (e.currentTarget.nextElementSibling) {
+                                (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                              }
+                            }}
+                          />
+                        ) : null}
+                        <span className={match.team1.logoUrl ? 'hidden text-xs' : 'text-xs'}>{match.team1.logoEmoji}</span>
+                      </div>
                       <span className="font-bold text-white text-xs sm:text-sm">
                         {match.team1.name}
                       </span>
@@ -118,7 +138,22 @@ export const Fixtures: React.FC<FixturesProps> = ({ matches, onSelectMatch }) =>
                   {/* Team 2 */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-base">{match.team2.logoEmoji}</span>
+                      <div className="w-5 h-5 rounded flex items-center justify-center p-0.5 bg-slate-900 border border-white/10 shrink-0">
+                        {match.team2.logoUrl ? (
+                          <img
+                            src={match.team2.logoUrl}
+                            alt={match.team2.name}
+                            className="w-full h-full object-contain filter drop-shadow-sm"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              if (e.currentTarget.nextElementSibling) {
+                                (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                              }
+                            }}
+                          />
+                        ) : null}
+                        <span className={match.team2.logoUrl ? 'hidden text-xs' : 'text-xs'}>{match.team2.logoEmoji}</span>
+                      </div>
                       <span className="font-bold text-white text-xs sm:text-sm">
                         {match.team2.name}
                       </span>

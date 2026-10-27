@@ -27,101 +27,135 @@ export const LiveScoreCard: React.FC<LiveScoreCardProps> = ({
   const ballsRemaining = currentScore ? Math.max(0, 120 - (Math.floor(currentScore.overs) * 6 + Math.round((currentScore.overs % 1) * 10))) : 0;
 
   return (
-    <div className="rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 shadow-2xl overflow-hidden mb-6">
-      {/* Top Banner: Stage, Venue, Match Number */}
-      <div className="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800/80 flex items-center justify-between flex-wrap gap-2 text-xs">
-        <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 rounded-full bg-red-600/20 text-red-400 border border-red-500/30 font-semibold uppercase tracking-wider flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-            {match.status === 'live' ? 'Match In Progress' : 'Match Finished'}
-          </span>
-          <span className="text-slate-300 font-medium">{match.stage}</span>
-        </div>
-        <div className="text-slate-400 flex items-center gap-1 text-[11px]">
-          <Clock className="w-3.5 h-3.5 text-slate-500" />
-          <span>{match.dateTime}</span>
-        </div>
-      </div>
+    <div className="rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 shadow-2xl overflow-hidden mb-6 relative">
+      {/* Stadium Atmospheric Background Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
+        style={{ backgroundImage: `url('/assets/stadium/tu-ground.jpg')` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/90 to-slate-950 pointer-events-none" />
 
-      {/* Main Scoreboard Arena */}
-      <div className="p-4 sm:p-6 bg-gradient-to-b from-slate-900/60 to-transparent">
-        {/* Match Title & Teams */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-          {/* Batting Team (Live Score) */}
-          <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1.5 h-full" style={{ backgroundColor: battingTeam.primaryColor }}></div>
-            
-            <div className="flex items-center gap-3">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-lg border border-white/10"
-                style={{ backgroundColor: `${battingTeam.primaryColor}25` }}
-              >
-                <span>{battingTeam.logoEmoji}</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="font-extrabold text-white text-base sm:text-lg leading-tight">
-                    {battingTeam.name}
-                  </h3>
-                  <span className="text-xs px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">
-                    BAT
-                  </span>
+      <div className="relative z-10">
+        {/* Top Banner: Stage, Venue, Match Number */}
+        <div className="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800/80 flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded-full bg-red-600/20 text-red-400 border border-red-500/30 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+              {match.status === 'live' ? 'Match In Progress' : 'Match Finished'}
+            </span>
+            <span className="text-slate-300 font-medium">{match.stage}</span>
+          </div>
+          <div className="text-slate-400 flex items-center gap-1 text-[11px]">
+            <Clock className="w-3.5 h-3.5 text-slate-500" />
+            <span>{match.dateTime}</span>
+          </div>
+        </div>
+
+        {/* Main Scoreboard Arena */}
+        <div className="p-4 sm:p-6 bg-gradient-to-b from-slate-900/60 to-transparent">
+          {/* Match Title & Teams */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            {/* Batting Team (Live Score) */}
+            <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-800/70 border border-slate-700/60 relative overflow-hidden backdrop-blur-sm">
+              <div className="absolute top-0 left-0 w-1.5 h-full" style={{ backgroundColor: battingTeam.primaryColor }}></div>
+              
+              <div className="flex items-center gap-3">
+                <div 
+                  className="w-13 h-13 rounded-xl flex items-center justify-center p-1.5 shadow-lg border border-white/10 bg-slate-900/90 shrink-0"
+                  style={{ borderColor: `${battingTeam.primaryColor}50` }}
+                >
+                  {battingTeam.logoUrl ? (
+                    <img
+                      src={battingTeam.logoUrl}
+                      alt={battingTeam.name}
+                      className="w-full h-full object-contain filter drop-shadow"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        if (e.currentTarget.nextElementSibling) {
+                          (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                        }
+                      }}
+                    />
+                  ) : null}
+                  <span className={battingTeam.logoUrl ? 'hidden text-2xl' : 'text-2xl'}>{battingTeam.logoEmoji}</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  {target ? `Chasing ${target} runs` : 'Batting 1st'}
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="font-extrabold text-white text-base sm:text-lg leading-tight">
+                      {battingTeam.name}
+                    </h3>
+                    <span className="text-xs px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">
+                      BAT
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    {target ? `Chasing ${target} runs` : 'Batting 1st'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Score Numbers */}
+              <div className="text-right">
+                <div className="flex items-baseline justify-end gap-1 font-scoreboard text-4xl sm:text-5xl font-bold tracking-tight text-white leading-none">
+                  <span className="text-amber-400">{currentScore?.runs ?? 0}</span>
+                  <span className="text-slate-400">/</span>
+                  <span className="text-white">{currentScore?.wickets ?? 0}</span>
+                </div>
+                <p className="text-xs text-slate-400 font-mono mt-0.5">
+                  ({currentScore?.overs.toFixed(1)} / 20.0 ov)
                 </p>
               </div>
             </div>
 
-            {/* Score Numbers */}
-            <div className="text-right">
-              <div className="flex items-baseline justify-end gap-1 font-scoreboard text-4xl sm:text-5xl font-bold tracking-tight text-white leading-none">
-                <span className="text-amber-400">{currentScore?.runs ?? 0}</span>
-                <span className="text-slate-400">/</span>
-                <span className="text-white">{currentScore?.wickets ?? 0}</span>
-              </div>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
-                ({currentScore?.overs.toFixed(1)} / 20.0 ov)
-              </p>
-            </div>
-          </div>
-
-          {/* Bowling / Opponent Team */}
-          <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-800/40 border border-slate-800 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1.5 h-full" style={{ backgroundColor: bowlingTeam.primaryColor }}></div>
-            
-            <div className="flex items-center gap-3">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-lg border border-white/5 opacity-80"
-                style={{ backgroundColor: `${bowlingTeam.primaryColor}20` }}
-              >
-                <span>{bowlingTeam.logoEmoji}</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="font-bold text-slate-200 text-base sm:text-lg leading-tight">
-                    {bowlingTeam.name}
-                  </h3>
-                  <span className="text-xs px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 font-medium border border-blue-500/30">
-                    BOWL
-                  </span>
+            {/* Bowling / Opponent Team */}
+            <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-800/50 border border-slate-800 relative overflow-hidden backdrop-blur-sm">
+              <div className="absolute top-0 left-0 w-1.5 h-full" style={{ backgroundColor: bowlingTeam.primaryColor }}></div>
+              
+              <div className="flex items-center gap-3">
+                <div 
+                  className="w-13 h-13 rounded-xl flex items-center justify-center p-1.5 shadow-lg border border-white/5 bg-slate-900/80 shrink-0"
+                  style={{ borderColor: `${bowlingTeam.primaryColor}40` }}
+                >
+                  {bowlingTeam.logoUrl ? (
+                    <img
+                      src={bowlingTeam.logoUrl}
+                      alt={bowlingTeam.name}
+                      className="w-full h-full object-contain filter drop-shadow"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        if (e.currentTarget.nextElementSibling) {
+                          (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                        }
+                      }}
+                    />
+                  ) : null}
+                  <span className={bowlingTeam.logoUrl ? 'hidden text-2xl' : 'text-2xl'}>{bowlingTeam.logoEmoji}</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  1st Innings: {opponentScore?.runs}/{opponentScore?.wickets} ({opponentScore?.overs.toFixed(1)} ov)
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="font-bold text-slate-200 text-base sm:text-lg leading-tight">
+                      {bowlingTeam.name}
+                    </h3>
+                    <span className="text-xs px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 font-medium border border-blue-500/30">
+                      BOWL
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    1st Innings: {opponentScore?.runs}/{opponentScore?.wickets} ({opponentScore?.overs.toFixed(1)} ov)
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <div className="font-scoreboard text-3xl sm:text-4xl font-bold text-slate-300 leading-none">
+                  {opponentScore?.runs}/{opponentScore?.wickets}
+                </div>
+                <p className="text-xs text-slate-500 font-mono mt-0.5">
+                  (20.0 ov)
                 </p>
               </div>
             </div>
-
-            <div className="text-right">
-              <div className="font-scoreboard text-3xl sm:text-4xl font-bold text-slate-300 leading-none">
-                {opponentScore?.runs}/{opponentScore?.wickets}
-              </div>
-              <p className="text-xs text-slate-500 font-mono mt-0.5">
-                (20.0 ov)
-              </p>
-            </div>
           </div>
-        </div>
 
         {/* Live Equation / Target Status Bar */}
         <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-slate-800/80 via-indigo-950/40 to-slate-800/80 border border-indigo-500/20 flex flex-wrap items-center justify-between gap-2 text-xs">
@@ -252,11 +286,29 @@ export const LiveScoreCard: React.FC<LiveScoreCardProps> = ({
                       : 'bg-slate-900/50 text-slate-300'
                   }`}
                 >
-                  <div className="flex items-center gap-1.5 font-medium">
-                    {batter.isStriker && <span className="text-amber-400">🏏</span>}
-                    <span className={batter.isStriker ? 'font-bold text-white' : ''}>
-                      {batter.name}
-                    </span>
+                  <div className="flex items-center gap-2 font-medium">
+                    {batter.photoUrl ? (
+                      <img
+                        src={batter.photoUrl}
+                        alt={batter.name}
+                        className="w-7 h-7 rounded-full object-cover border border-amber-400/40 shadow-sm shrink-0"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-amber-300 font-bold border border-slate-700 shrink-0">
+                        {batter.name.slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-center gap-1">
+                        {batter.isStriker && <span className="text-amber-400 text-xs">🏏</span>}
+                        <span className={batter.isStriker ? 'font-bold text-white' : 'text-slate-200'}>
+                          {batter.name}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="font-mono text-right flex items-center gap-3">
@@ -290,8 +342,24 @@ export const LiveScoreCard: React.FC<LiveScoreCardProps> = ({
 
             {match.bowler && (
               <div className="flex items-center justify-between p-2 rounded-lg bg-blue-500/10 border border-blue-500/30 text-xs">
-                <div className="font-semibold text-white">
-                  {match.bowler.name}
+                <div className="flex items-center gap-2">
+                  {match.bowler.photoUrl ? (
+                    <img
+                      src={match.bowler.photoUrl}
+                      alt={match.bowler.name}
+                      className="w-7 h-7 rounded-full object-cover border border-blue-400/40 shadow-sm shrink-0"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-blue-300 font-bold border border-slate-700 shrink-0">
+                      {match.bowler.name.slice(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="font-semibold text-white">
+                    {match.bowler.name}
+                  </div>
                 </div>
                 <div className="font-mono text-right flex items-center gap-3 text-slate-300">
                   <span className="text-slate-400">{match.bowler.overs.toFixed(1)}</span>
@@ -385,5 +453,6 @@ export const LiveScoreCard: React.FC<LiveScoreCardProps> = ({
         </div>
       </div>
     </div>
+  </div>
   );
 };

@@ -9,6 +9,8 @@ export interface Team {
   marqueePlayer: string;
   captain: string;
   logoEmoji: string;
+  logoUrl: string;
+  bannerUrl: string;
   homeVenue: string;
   owner: string;
 }
@@ -21,6 +23,7 @@ export interface BatterScore {
   sixes: number;
   isStriker: boolean;
   dismissal?: string;
+  photoUrl?: string;
 }
 
 export interface BowlerScore {
@@ -30,6 +33,7 @@ export interface BowlerScore {
   runs: number;
   wickets: number;
   economy: number;
+  photoUrl?: string;
 }
 
 export interface BallCommentary {
@@ -96,6 +100,7 @@ export interface StandingsEntry {
   points: number;
   form: ('W' | 'L' | 'NR')[];
   logoEmoji: string;
+  logoUrl?: string;
 }
 
 export interface PlayerStat {
@@ -117,6 +122,7 @@ export interface PlayerStat {
   sixes?: number;
   fours?: number;
   isCapHolder?: boolean;
+  photoUrl?: string;
 }
 
 export interface PollQuestion {

@@ -17,11 +17,16 @@ export const PointsTable: React.FC<PointsTableProps> = ({ standings, onSelectTea
             <Trophy className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-sm sm:text-base font-extrabold text-white tracking-wide">
-              NPL POINTS TABLE STANDINGS
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm sm:text-base font-extrabold text-white tracking-wide">
+                NPL 2026 POINTS TABLE STANDINGS
+              </h2>
+              <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                WIKIPEDIA LIVE
+              </span>
+            </div>
             <p className="text-[11px] text-slate-400">
-              Live standings automatically updated with Net Run Rate (NRR)
+              Live standings synced with <strong>Wikipedia &amp; Google Cricinfo</strong> (Net Run Rate NRR)
             </p>
           </div>
         </div>
@@ -88,10 +93,23 @@ export const PointsTable: React.FC<PointsTableProps> = ({ standings, onSelectTea
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-2.5">
                       <div
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-sm shadow border border-white/10"
-                        style={{ backgroundColor: `${team.primaryColor}25` }}
+                        className="w-7 h-7 rounded-lg flex items-center justify-center p-0.5 shadow border border-white/10 bg-slate-800 shrink-0"
+                        style={{ borderColor: `${team.primaryColor}60` }}
                       >
-                        {team.logoEmoji}
+                        {team.logoUrl ? (
+                          <img
+                            src={team.logoUrl}
+                            alt={team.teamName}
+                            className="w-full h-full object-contain filter drop-shadow-sm"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              if (e.currentTarget.nextElementSibling) {
+                                (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                              }
+                            }}
+                          />
+                        ) : null}
+                        <span className={team.logoUrl ? 'hidden text-sm' : 'text-sm'}>{team.logoEmoji}</span>
                       </div>
                       <div>
                         <div className="font-extrabold text-white text-xs sm:text-sm flex items-center gap-1.5">

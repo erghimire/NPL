@@ -4,6 +4,7 @@ import { Match, StandingsEntry, BallCommentary, BatterScore } from '../types/npl
 import { INITIAL_MATCHES, INITIAL_STANDINGS } from '../data/nplData';
 import { cricketSound } from '../utils/audio';
 import { notificationService } from '../services/notificationService';
+import { liveDataSync, WikiSyncResult } from '../services/liveDataSyncService';
 
 const COMMENTARY_TEMPLATES = [
   {
@@ -75,9 +76,56 @@ export function useLiveMatchSimulation() {
   const [lastUpdatedTime, setLastUpdatedTime] = useState<Date>(new Date());
   const [eventAlert, setEventAlert] = useState<{ text: string; type: 'six' | 'four' | 'wicket' | 'milestone' | 'win' } | null>(null);
 
+  const [isWikiSynced, setIsWikiSynced] = useState<boolean>(false);
+  const [isSyncingWiki, setIsSyncingWiki] = useState<boolean>(false);
+  const [wikiLastSync, setWikiLastSync] = useState<string>('');
+  const [wikiSeasonInfo, setWikiSeasonInfo] = useState<string>('Siddhartha Bank NPL 2026 • Live from TU Ground, Kirtipur');
+
   // Keep track of milestones (50 or 100) already reached by batters in this innings
   const reachedMilestones = useRef<Set<string>>(new Set(['James Neesham-50', 'Aasif Sheikh-50']));
   const nextBatterIndex = useRef<number>(0);
+
+  // Sync real-time NPL 2026 data from Wikipedia & Google/Cricinfo
+  const syncWithWikipedia = useCallback(async () => {
+    setIsSyncingWiki(true);
+    try {
+      const data = await liveDataSync.fetchLive2026Data();
+      if (data) {
+        if (data.standings && data.standings.length > 0) {
+          setStandings(data.standings);
+        }
+        if (data.matches && data.matches.length > 0) {
+          setMatches((prev) => {
+            const currentLive = prev.find((m) => m.status === 'live');
+            return data.matches.map((m) => {
+              if (m.status === 'live' && currentLive) {
+                return { ...m, ...currentLive, id: m.id, stage: m.stage };
+              }
+              return m;
+            });
+          });
+        }
+        setIsWikiSynced(true);
+        setWikiLastSync(data.lastUpdated);
+        if (data.extract) {
+          setWikiSeasonInfo(data.extract);
+        }
+      }
+    } catch (e) {
+      console.warn('Sync failed', e);
+    } finally {
+      setIsSyncingWiki(false);
+    }
+  }, []);
+
+  // Initial and periodic Wikipedia live data fetch
+  useEffect(() => {
+    syncWithWikipedia();
+    const wikiTimer = setInterval(() => {
+      syncWithWikipedia();
+    }, 45000);
+    return () => clearInterval(wikiTimer);
+  }, [syncWithWikipedia]);
 
   // Trigger next ball simulation
   const simulateNextBall = useCallback((forcedOutcome?: 'wicket' | 'fifty' | 'century' | 'six' | 'four') => {
@@ -429,6 +477,11 @@ export function useLiveMatchSimulation() {
     lastUpdatedTime,
     eventAlert,
     simulateNextBall,
-    resetMatch
+    resetMatch,
+    isWikiSynced,
+    isSyncingWiki,
+    wikiLastSync,
+    wikiSeasonInfo,
+    syncWithWikipedia
   };
 }

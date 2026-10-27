@@ -12,6 +12,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'James Neesham',
     captain: 'Aasif Sheikh',
     logoEmoji: '⚡',
+    logoUrl: '/assets/teams/janakpur-bolts.png',
+    bannerUrl: '/assets/teams/banners/janakpur_bolts-banner.jpg',
     homeVenue: 'Ram Janaki Stadium / TU Ground',
     owner: 'Dream Sports Nepal'
   },
@@ -26,6 +28,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Dipendra Singh Airee',
     captain: 'Dipendra Singh Airee',
     logoEmoji: '👑',
+    logoUrl: '/assets/teams/sudurpaschim-royals.png',
+    bannerUrl: '/assets/teams/banners/sudurpaschim_royals-banner.jpg',
     homeVenue: 'Fapla Cricket Ground / TU Ground',
     owner: 'Empire Sports'
   },
@@ -40,6 +44,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Martin Guptill',
     captain: 'Sandeep Lamichhane',
     logoEmoji: '🦁',
+    logoUrl: '/assets/teams/biratnagar-kings.jpg',
+    bannerUrl: '/assets/teams/banners/biratnagar_kings-banner.jpg',
     homeVenue: 'Biratnagar Stadium / TU Ground',
     owner: 'MAD Dream Group'
   },
@@ -54,6 +60,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Gerhard Erasmus',
     captain: 'Karan KC',
     logoEmoji: '⚔️',
+    logoUrl: '/assets/teams/kathmandu-gurkhas.png',
+    bannerUrl: '/assets/teams/banners/kathmandu_gurkhas-banner.jpg',
     homeVenue: 'Mulpani International Cricket Stadium',
     owner: 'Kathmandu Sports Pvt. Ltd.'
   },
@@ -68,6 +76,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Matt Critchley',
     captain: 'Kushal Bhurtel',
     logoEmoji: '🦅',
+    logoUrl: '/assets/teams/pokhara-avengers.png',
+    bannerUrl: '/assets/teams/banners/pokhara_avengers-banner.jpg',
     homeVenue: 'Pokhara Rangasala Cricket Ground',
     owner: 'Nepal T20 Ventures'
   },
@@ -82,6 +92,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Marchant de Lange',
     captain: 'Kushal Malla',
     logoEmoji: '🦏',
+    logoUrl: '/assets/teams/chitwan-rhinos.png',
+    bannerUrl: '/assets/teams/banners/chitwan_rhinos-banner.jpg',
     homeVenue: 'Gautam Buddha International Stadium',
     owner: 'Chitwan Sports Academy'
   },
@@ -96,6 +108,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Shikhar Dhawan',
     captain: 'Sompal Kami',
     logoEmoji: '🐂',
+    logoUrl: '/assets/teams/karnali-yaks.png',
+    bannerUrl: '/assets/teams/banners/karnali_yaks-banner.jpg',
     homeVenue: 'Surkhet Stadium / TU Ground',
     owner: 'Himalayan Cricket Trust'
   },
@@ -110,6 +124,8 @@ export const NPL_TEAMS: Record<string, Team> = {
     marqueePlayer: 'Ben Cutting',
     captain: 'Rohit Paudel',
     logoEmoji: '🐅',
+    logoUrl: '/assets/teams/lumbini-lions.png',
+    bannerUrl: '/assets/teams/banners/lumbini_lions-banner.jpg',
     homeVenue: 'Extra Tech Oval, Tilottama',
     owner: 'Fortuna Sports'
   }
@@ -130,7 +146,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: 1.285,
     points: 12,
     form: ['W', 'W', 'L', 'W', 'W'],
-    logoEmoji: '⚡'
+    logoEmoji: '⚡',
+    logoUrl: '/assets/teams/janakpur-bolts.png'
   },
   {
     rank: 2,
@@ -146,7 +163,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: 0.842,
     points: 10,
     form: ['W', 'L', 'W', 'W', 'W'],
-    logoEmoji: '👑'
+    logoEmoji: '👑',
+    logoUrl: '/assets/teams/sudurpaschim-royals.png'
   },
   {
     rank: 3,
@@ -162,7 +180,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: 0.312,
     points: 8,
     form: ['W', 'W', 'L', 'W', 'L'],
-    logoEmoji: '🦁'
+    logoEmoji: '🦁',
+    logoUrl: '/assets/teams/biratnagar-kings.jpg'
   },
   {
     rank: 4,
@@ -178,7 +197,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: 0.118,
     points: 8,
     form: ['L', 'W', 'W', 'L', 'W'],
-    logoEmoji: '⚔️'
+    logoEmoji: '⚔️',
+    logoUrl: '/assets/teams/kathmandu-gurkhas.png'
   },
   {
     rank: 5,
@@ -194,7 +214,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: -0.194,
     points: 6,
     form: ['L', 'L', 'W', 'W', 'L'],
-    logoEmoji: '🦏'
+    logoEmoji: '🦏',
+    logoUrl: '/assets/teams/chitwan-rhinos.png'
   },
   {
     rank: 6,
@@ -210,7 +231,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: -0.428,
     points: 6,
     form: ['W', 'L', 'L', 'L', 'W'],
-    logoEmoji: '🦅'
+    logoEmoji: '🦅',
+    logoUrl: '/assets/teams/pokhara-avengers.png'
   },
   {
     rank: 7,
@@ -226,7 +248,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: -0.875,
     points: 4,
     form: ['L', 'L', 'W', 'L', 'L'],
-    logoEmoji: '🐂'
+    logoEmoji: '🐂',
+    logoUrl: '/assets/teams/karnali-yaks.png'
   },
   {
     rank: 8,
@@ -242,7 +265,8 @@ export const INITIAL_STANDINGS: StandingsEntry[] = [
     netRunRate: -1.060,
     points: 2,
     form: ['L', 'L', 'L', 'L', 'W'],
-    logoEmoji: '🐅'
+    logoEmoji: '🐅',
+    logoUrl: '/assets/teams/lumbini-lions.png'
   }
 ];
 
@@ -278,7 +302,8 @@ export const INITIAL_MATCHES: Match[] = [
         balls: 28,
         fours: 4,
         sixes: 4,
-        isStriker: true
+        isStriker: true,
+        photoUrl: '/assets/players/martin-guptill.jpg'
       },
       {
         name: 'Aasif Sheikh (c)',
@@ -286,7 +311,8 @@ export const INITIAL_MATCHES: Match[] = [
         balls: 41,
         fours: 6,
         sixes: 2,
-        isStriker: false
+        isStriker: false,
+        photoUrl: '/assets/players/aasif-sheikh.jpg'
       }
     ],
     bowler: {
@@ -295,7 +321,8 @@ export const INITIAL_MATCHES: Match[] = [
       maidens: 0,
       runs: 31,
       wickets: 2,
-      economy: 9.30
+      economy: 9.30,
+      photoUrl: '/assets/players/scott-kuggeleijn.jpg'
     },
     recentBalls: ['1', '4', '•', '6', '2', '1'],
     commentary: [
@@ -455,7 +482,8 @@ export const TOP_BATSMEN: PlayerStat[] = [
     sixes: 16,
     fours: 32,
     highestScore: '78*',
-    isCapHolder: true // Orange Cap
+    isCapHolder: true, // Orange Cap
+    photoUrl: '/assets/players/aasif-sheikh.jpg'
   },
   {
     id: 'bat-2',
@@ -471,7 +499,8 @@ export const TOP_BATSMEN: PlayerStat[] = [
     hundreds: 0,
     sixes: 22,
     fours: 26,
-    highestScore: '86'
+    highestScore: '86',
+    photoUrl: '/assets/players/martin-guptill.jpg'
   },
   {
     id: 'bat-3',
@@ -487,7 +516,8 @@ export const TOP_BATSMEN: PlayerStat[] = [
     hundreds: 0,
     sixes: 18,
     fours: 24,
-    highestScore: '71*'
+    highestScore: '71*',
+    photoUrl: '/assets/players/dipendra-singh-airee.jpg'
   },
   {
     id: 'bat-4',
@@ -503,7 +533,8 @@ export const TOP_BATSMEN: PlayerStat[] = [
     hundreds: 0,
     sixes: 12,
     fours: 28,
-    highestScore: '65'
+    highestScore: '65',
+    photoUrl: '/assets/players/kushal-bhurtel.jpg'
   },
   {
     id: 'bat-5',
@@ -519,7 +550,8 @@ export const TOP_BATSMEN: PlayerStat[] = [
     hundreds: 0,
     sixes: 9,
     fours: 30,
-    highestScore: '72'
+    highestScore: '72',
+    photoUrl: '/assets/players/shikhar-dhawan.jpg'
   }
 ];
 
@@ -535,7 +567,8 @@ export const TOP_BOWLERS: PlayerStat[] = [
     average: 13.8,
     economy: 6.12,
     bestBowling: '4/18',
-    isCapHolder: true // Purple Cap
+    isCapHolder: true, // Purple Cap
+    photoUrl: '/assets/players/sandeep-lamichhane.png'
   },
   {
     id: 'bowl-2',
@@ -547,7 +580,8 @@ export const TOP_BOWLERS: PlayerStat[] = [
     wickets: 13,
     average: 16.2,
     economy: 7.24,
-    bestBowling: '3/15'
+    bestBowling: '3/15',
+    photoUrl: '/assets/players/karan-kc.jpg'
   },
   {
     id: 'bowl-3',
@@ -559,7 +593,8 @@ export const TOP_BOWLERS: PlayerStat[] = [
     wickets: 12,
     average: 18.0,
     economy: 7.85,
-    bestBowling: '3/20'
+    bestBowling: '3/20',
+    photoUrl: '/assets/players/scott-kuggeleijn.jpg'
   },
   {
     id: 'bowl-4',
@@ -571,7 +606,8 @@ export const TOP_BOWLERS: PlayerStat[] = [
     wickets: 11,
     average: 20.1,
     economy: 7.90,
-    bestBowling: '3/28'
+    bestBowling: '3/28',
+    photoUrl: '/assets/players/sompal-kami.jpg'
   },
   {
     id: 'bowl-5',
@@ -583,7 +619,8 @@ export const TOP_BOWLERS: PlayerStat[] = [
     wickets: 11,
     average: 19.4,
     economy: 7.42,
-    bestBowling: '3/19'
+    bestBowling: '3/19',
+    photoUrl: '/assets/players/sompal-kami.jpg'
   }
 ];
 

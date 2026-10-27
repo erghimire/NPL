@@ -125,8 +125,17 @@ export const FanZone: React.FC = () => {
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">⚡</span>
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg p-0.5 bg-slate-950 border border-white/10 shrink-0 flex items-center justify-center">
+                      <img
+                        src="/assets/teams/janakpur-bolts.png"
+                        alt="Janakpur Bolts"
+                        className="w-full h-full object-contain filter drop-shadow-sm"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
                     <div>
                       <h4 className="font-extrabold text-white text-xs">Janakpur Bolts</h4>
                       <span className="text-[10px] text-slate-400">Aasif Sheikh (c)</span>
@@ -156,8 +165,17 @@ export const FanZone: React.FC = () => {
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">👑</span>
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg p-0.5 bg-slate-950 border border-white/10 shrink-0 flex items-center justify-center">
+                      <img
+                        src="/assets/teams/sudurpaschim-royals.png"
+                        alt="Sudurpaschim Royals"
+                        className="w-full h-full object-contain filter drop-shadow-sm"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
                     <div>
                       <h4 className="font-extrabold text-white text-xs">Sudurpaschim Royals</h4>
                       <span className="text-[10px] text-slate-400">Dipendra S. Airee (c)</span>

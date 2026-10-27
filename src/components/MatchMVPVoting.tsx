@@ -11,6 +11,8 @@ export interface MVPCandidate {
   teamShort: string;
   teamColor: string;
   teamEmoji: string;
+  photoUrl?: string;
+  teamLogoUrl?: string;
   role: string;
   matchPerformance: string;
   highlightPill: string;
@@ -26,6 +28,8 @@ const INITIAL_CANDIDATES: MVPCandidate[] = [
     teamShort: 'JB',
     teamColor: '#EAB308',
     teamEmoji: '⚡',
+    photoUrl: '/assets/players/martin-guptill.jpg',
+    teamLogoUrl: '/assets/teams/janakpur-bolts.png',
     role: 'All-Rounder',
     matchPerformance: '54* (28) • 4x4, 4x6 • SR: 192.8 & 1/18 (2.0 ov)',
     highlightPill: 'Blistering 54* & Wicket',
@@ -39,6 +43,8 @@ const INITIAL_CANDIDATES: MVPCandidate[] = [
     teamShort: 'JB',
     teamColor: '#EAB308',
     teamEmoji: '⚡',
+    photoUrl: '/assets/players/aasif-sheikh.jpg',
+    teamLogoUrl: '/assets/teams/janakpur-bolts.png',
     role: 'Captain & Wicketkeeper',
     matchPerformance: '62 (41) • 6x4, 2x6 • Anchor Chase',
     highlightPill: 'Top Scorer (62 Runs)',
@@ -52,6 +58,8 @@ const INITIAL_CANDIDATES: MVPCandidate[] = [
     teamShort: 'SR',
     teamColor: '#2563EB',
     teamEmoji: '👑',
+    photoUrl: '/assets/players/dipendra-singh-airee.jpg',
+    teamLogoUrl: '/assets/teams/sudurpaschim-royals.png',
     role: 'Captain & All-Rounder',
     matchPerformance: '58 (32) • 4x4, 3x6 & 1/24 (4.0 ov)',
     highlightPill: 'Captain Knock 58 & 1 Wkt',
@@ -65,6 +73,8 @@ const INITIAL_CANDIDATES: MVPCandidate[] = [
     teamShort: 'SR',
     teamColor: '#2563EB',
     teamEmoji: '👑',
+    photoUrl: '/assets/players/scott-kuggeleijn.jpg',
+    teamLogoUrl: '/assets/teams/sudurpaschim-royals.png',
     role: 'Fast Bowler',
     matchPerformance: '2/31 (3.2 ov) • Econ: 9.3 • 18 (9)',
     highlightPill: '2 Crucial Wickets',
@@ -78,6 +88,8 @@ const INITIAL_CANDIDATES: MVPCandidate[] = [
     teamShort: 'JB',
     teamColor: '#EAB308',
     teamEmoji: '⚡',
+    photoUrl: '/assets/players/sompal-kami.jpg',
+    teamLogoUrl: '/assets/teams/janakpur-bolts.png',
     role: 'Fast Bowler',
     matchPerformance: '3/26 (4.0 ov) • Econ: 6.50',
     highlightPill: '3/26 in 1st Innings',
@@ -207,23 +219,39 @@ export const MatchMVPVoting: React.FC = () => {
           </button>
           <button
             onClick={() => setTeamFilter('janakpur_bolts')}
-            className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
+            className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1.5 ${
               teamFilter === 'janakpur_bolts'
                 ? 'bg-yellow-500 text-slate-950 shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <span>⚡ Janakpur Bolts</span>
+            <img
+              src="/assets/teams/janakpur-bolts.png"
+              alt="Janakpur Bolts"
+              className="w-3.5 h-3.5 object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <span>Janakpur Bolts</span>
           </button>
           <button
             onClick={() => setTeamFilter('sudurpaschim_royals')}
-            className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
+            className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1.5 ${
               teamFilter === 'sudurpaschim_royals'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <span>👑 Sudurpaschim Royals</span>
+            <img
+              src="/assets/teams/sudurpaschim-royals.png"
+              alt="Sudurpaschim Royals"
+              className="w-3.5 h-3.5 object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <span>Sudurpaschim Royals</span>
           </button>
         </div>
 
@@ -262,10 +290,35 @@ export const MatchMVPVoting: React.FC = () => {
                 {/* Left: Player Identity and Match Performance */}
                 <div className="flex items-start gap-3">
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 shadow border border-white/10 mt-0.5"
-                    style={{ backgroundColor: `${candidate.teamColor}25` }}
+                    className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md border border-white/10 mt-0.5 relative bg-slate-950"
+                    style={{ borderColor: `${candidate.teamColor}50` }}
                   >
-                    <span>{candidate.teamEmoji}</span>
+                    {candidate.photoUrl ? (
+                      <img
+                        src={candidate.photoUrl}
+                        alt={candidate.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          if (e.currentTarget.nextElementSibling) {
+                            (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+                          }
+                        }}
+                      />
+                    ) : null}
+                    <div className={candidate.photoUrl ? 'hidden w-full h-full items-center justify-center text-xl' : 'w-full h-full flex items-center justify-center text-xl'}>
+                      <span>{candidate.teamEmoji}</span>
+                    </div>
+                    {candidate.teamLogoUrl && (
+                      <img
+                        src={candidate.teamLogoUrl}
+                        alt={candidate.teamName}
+                        className="absolute bottom-0 right-0 w-4 h-4 object-contain rounded-tl bg-slate-900/90 p-0.5 border-t border-l border-white/20"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    )}
                   </div>
 
                   <div>

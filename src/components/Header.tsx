@@ -42,8 +42,15 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3">
           <div className="relative group cursor-pointer" onClick={onOpenApkModal}>
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 via-crimson-600 to-indigo-900 p-0.5 shadow-lg shadow-red-500/20">
-              <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center overflow-hidden">
-                <img src="/icon.svg" alt="NPL Logo" className="w-8 h-8 object-contain" />
+              <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center overflow-hidden p-0.5">
+                <img
+                  src="/assets/teams/npl-logo.png"
+                  alt="Nepal Premier League Official Logo"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    e.currentTarget.src = '/icon.svg';
+                  }}
+                />
               </div>
             </div>
             <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
