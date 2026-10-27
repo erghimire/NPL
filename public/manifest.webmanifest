@@ -1,0 +1,72 @@
+{
+  "id": "/",
+  "name": "Nepal Premier League - NPL Live",
+  "short_name": "NPL Cricket",
+  "description": "Official Nepal Premier League cricket app with real-time live scores, points table standings, fixtures, ball-by-ball commentary, and stats.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "sports",
+    "entertainment",
+    "news"
+  ],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Nepal Premier League Live Scores and Scorecard"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Nepal Premier League Points Table and Standings"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Live Scores",
+      "short_name": "Live",
+      "description": "View live Nepal Premier League match score",
+      "url": "/?tab=live",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Points Table",
+      "short_name": "Standings",
+      "description": "Check NPL points table and team standings",
+      "url": "/?tab=table",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

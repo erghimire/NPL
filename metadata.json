@@ -1,0 +1,6 @@
+{
+  "name": "Nepal Premier League (NPL) - Live Scores & Table",
+  "description": "Nepal Premier League cricket app with real-time live score updates, points table standings, fixtures, ball-by-ball updates, franchise stats, and Play Store APK export guide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

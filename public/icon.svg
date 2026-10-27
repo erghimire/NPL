@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#311042" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background circle/shield with safe margin -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect x="12" y="12" width="488" height="488" rx="100" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.6" />
+
+  <!-- Mountain Silhouette (Himalayas) -->
+  <path d="M40 370 L140 250 L200 310 L280 200 L370 330 L420 280 L480 370 Z" fill="#3b82f6" fill-opacity="0.18" />
+  <path d="M80 370 L180 230 L256 160 L330 240 L400 310 L440 370 Z" fill="#6366f1" fill-opacity="0.22" />
+  
+  <!-- Snow peaks -->
+  <polygon points="256,160 235,195 256,188 277,195" fill="#ffffff" fill-opacity="0.8" />
+  <polygon points="180,230 162,255 180,250 198,255" fill="#ffffff" fill-opacity="0.7" />
+  <polygon points="330,240 315,262 330,258 345,262" fill="#ffffff" fill-opacity="0.7" />
+
+  <!-- Cricket Wickets (Stumps and Bails) in Gold -->
+  <g id="wickets" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round">
+    <!-- 3 Stumps -->
+    <line x1="228" y1="210" x2="228" y2="330" />
+    <line x1="256" y1="202" x2="256" y2="330" />
+    <line x1="284" y1="210" x2="284" y2="330" />
+    <!-- Bails -->
+    <line x1="222" y1="206" x2="252" y2="202" stroke-width="5" />
+    <line x1="260" y1="202" x2="290" y2="206" stroke-width="5" />
+  </g>
+
+  <!-- Glowing Cricket Ball -->
+  <circle cx="340" cy="190" r="32" fill="url(#crimsonGrad)" filter="url(#glow)" />
+  <path d="M322 174 C342 184 346 206 338 214" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="3,3" />
+  <path d="M336 168 C356 182 358 200 352 210" fill="none" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="350" cy="178" r="4" fill="#ffffff" fill-opacity="0.5" />
+
+  <!-- Nepal Pennant / Twin Triangles Motif -->
+  <g transform="translate(145, 170) scale(0.65)">
+    <polygon points="0,0 70,40 0,65" fill="#DC2626" stroke="#003893" stroke-width="4" />
+    <polygon points="0,60 70,105 0,135" fill="#DC2626" stroke="#003893" stroke-width="4" />
+    <circle cx="22" cy="38" r="8" fill="#FFFFFF" />
+    <circle cx="22" cy="98" r="8" fill="#FFFFFF" />
+  </g>
+
+  <!-- Text: NPL -->
+  <text x="256" y="415" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="58" text-anchor="middle" fill="#FFFFFF" letter-spacing="4">
+    NPL
+  </text>
+  
+  <!-- Text: NEPAL PREMIER LEAGUE -->
+  <text x="256" y="445" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" text-anchor="middle" fill="#F59E0B" letter-spacing="3">
+    NEPAL PREMIER LEAGUE
+  </text>
+
+  <!-- 5 Gold Stars for Championship Glamour -->
+  <g fill="#F59E0B" transform="translate(196, 460) scale(0.7)">
+    <polygon points="10,1 4,19 19,7 1,7 16,19" />
+    <polygon points="50,1 44,19 59,7 41,7 56,19" />
+    <polygon points="90,1 84,19 99,7 81,7 96,19" />
+    <polygon points="130,1 124,19 139,7 121,7 136,19" />
+    <polygon points="170,1 164,19 179,7 161,7 176,19" />
+  </g>
+</svg>
